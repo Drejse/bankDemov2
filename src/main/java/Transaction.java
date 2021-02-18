@@ -9,14 +9,6 @@ public class Transaction {
         this.date = date;
     }
 
-    public int getAmount() {
-        return amount;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
     @Override
     public String toString() {
         return "Transaction{" +

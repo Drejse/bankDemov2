@@ -1,13 +1,8 @@
-
-
 import java.sql.*;
 import java.util.Scanner;
 
 public class Utilities {
     public static Connection conn;
-
-
-
     private final static String JdbcUrl = "jdbc:mysql://localhost/BankDemo?" + "autoReconnect=true&useSSL=false";
     private final static String username = "root";
     private final static String password = "Cervelo2011";
@@ -23,8 +18,6 @@ public class Utilities {
     public static String getPassword() {
         return password;
     }
-
-
 
     public static void createConnection() {
         try {
@@ -49,10 +42,7 @@ public class Utilities {
         String username = Utilities.promptForAnwser();
         System.out.println("Input Password: ");
         String password = Utilities.promptForAnwser();
-
-
         String sql = "INSERT INTO Customer (Customer_email, Customer_username, Customer_password, Customer_balance) values ('" + email + "','" + username + "','" + password + "','" + 0 + "')";
-
         Statement st = null;
         try {
             st = conn.createStatement();
@@ -73,7 +63,6 @@ public class Utilities {
             e.printStackTrace();
         }
     }
-
 
     public static void transferBalance(int withdrawAmount, String email1, String email2){
         int currentBalance1 = Account.getBalanceForTransfer(email1);
@@ -116,8 +105,3 @@ public class Utilities {
         return customerID;
     }
 }
-
-
-
-
-

@@ -1,15 +1,10 @@
-import sun.nio.ch.Util;
-
 import java.util.Scanner;
 
 public class Driver {
-    boolean menu = false;
 
         public static void menu () {
-
         System.out.println("1) Login \n2) Empoyee login \n3) Create Account\n9) quit");
         Scanner input = new Scanner(System.in);
-
 
         int choice = input.nextInt();
         switch (choice) {
@@ -17,17 +12,26 @@ public class Driver {
                 Customer.login();
                 if (Customer.succes == true) {
                     menuWhenLoggedIn();
-                } else {
+                }
+                else {
                     Customer.login();
                 }
                 break;
             case 2:
-                //Employee Login
+                Employee.login();
+                if(Employee.EMsucces == true) {
+                    employeeLogin();
+                }
+                else {
+                    Employee.login();
+                }
                 break;
             case 3:
                 Utilities.createUser();
+                menuWhenLoggedIn();
                 break;
             case 9:
+                System.out.println("Closing program");
                 break;
         }
     }
@@ -50,7 +54,6 @@ public class Driver {
                 menuWhenLoggedIn();
                 break;
             case 3:
-                // check Transactionzzz
                 int id = Utilities.getCustomerID(Customer.email);
                 Account.printTransactions(id);
                 menuWhenLoggedIn();
@@ -61,7 +64,6 @@ public class Driver {
                 menuWhenLoggedIn();
                 break;
             case 5:
-               //transfer
                 System.out.println("Transfer amount: ");
                 int transferAmount = input.nextInt();
                 System.out.println("From: ");
@@ -69,10 +71,32 @@ public class Driver {
                 System.out.println("To: ");
                 String email2 = input.next();
                 Utilities.transferBalance(transferAmount, email1, email2);
+                menuWhenLoggedIn();
                 break;
             case 9:
                 menu();
                 break;
          }
+        }
+        public static void employeeLogin()
+        {
+            System.out.println("1) Transfer \n2) logout");
+            Scanner input = new Scanner(System.in);
+            int choice = input.nextInt();
+            switch (choice) {
+                case 1:
+                    System.out.println("Transfer amount: ");
+                    int transferAmount = input.nextInt();
+                    System.out.println("From: ");
+                    String email1 = input.next();
+                    System.out.println("To: ");
+                    String email2 = input.next();
+                    Utilities.transferBalance(transferAmount, email1, email2);
+                    employeeLogin();
+                    break;
+                case 2:
+                    menu();
+                    break;
+            }
         }
 }

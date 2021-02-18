@@ -6,7 +6,6 @@ class AccountTest {
 
     Customer c1 = new Customer("jon");
     Account account = new Account(c1);
-    //int newBalance = account.depositAmount(125);
 
     @Test
     void getBalance() {

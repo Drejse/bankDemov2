@@ -27,7 +27,6 @@ public class Customer {
         return Objects.hash(getName());
     }
 
-
     public static boolean validateCredentials(String email, String password) {
 
         String pass = null;
